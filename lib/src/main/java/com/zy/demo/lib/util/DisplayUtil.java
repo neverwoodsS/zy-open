@@ -8,6 +8,17 @@ import android.graphics.Paint;
  * Create by zhangll on 2016.07.31
  */
 public class DisplayUtil {
+
+    private static Context context;
+
+    /**
+     * 初始化方法，传入所需的上下文
+     * @param context
+     */
+    public static void init(Context context) {
+        DisplayUtil.context = context;
+    }
+
     /**
      * 将px值转换为dip或dp值，保证尺寸大小不变
      *
@@ -15,7 +26,7 @@ public class DisplayUtil {
      *            （DisplayMetrics类中属性density）
      * @return
      */
-    public static int px2dip(Context context, float pxValue) {
+    public static int px2dip(float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
@@ -27,7 +38,7 @@ public class DisplayUtil {
      *            （DisplayMetrics类中属性density）
      * @return
      */
-    public static int dip2px(Context context, float dipValue) {
+    public static int dip2px(float dipValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
@@ -39,7 +50,7 @@ public class DisplayUtil {
      *            （DisplayMetrics类中属性scaledDensity）
      * @return
      */
-    public static int px2sp(Context context, float pxValue) {
+    public static int px2sp(float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
@@ -51,7 +62,7 @@ public class DisplayUtil {
      *            （DisplayMetrics类中属性scaledDensity）
      * @return
      */
-    public static int sp2px(Context context, float spValue) {
+    public static int sp2px(float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
