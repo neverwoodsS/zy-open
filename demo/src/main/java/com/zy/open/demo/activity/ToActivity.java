@@ -2,7 +2,7 @@ package com.zy.open.demo.activity;
 
 import android.os.Bundle;
 import android.util.Log;
-import com.zy.demo.lib.ZYActivity;
+import com.zy.demo.lib.base.ZYActivity;
 import com.zy.open.demo.R;
 
 public class ToActivity extends ZYActivity {
