@@ -1,4 +1,4 @@
-package com.zy.open;
+package com.zy.demo.lib;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

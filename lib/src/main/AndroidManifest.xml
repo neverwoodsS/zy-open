@@ -4,7 +4,6 @@
 
     <application
         android:allowBackup="true"
-        android:label="@string/zy_open_lib_name"
         android:supportsRtl="true">
     </application>
 
