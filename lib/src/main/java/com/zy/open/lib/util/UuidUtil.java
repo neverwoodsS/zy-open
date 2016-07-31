@@ -1,4 +1,4 @@
-package com.zy.demo.lib.util;
+package com.zy.open.lib.util;
 
 import java.util.UUID;
 
