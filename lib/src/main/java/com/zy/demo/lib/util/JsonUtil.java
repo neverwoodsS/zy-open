@@ -13,18 +13,27 @@ public class JsonUtil {
 		if (in == null) {
 			return "";
 		}
-		return replaceQuotationMarkInValue(in.replaceAll("\"\\[", "[").replaceAll("\\]\"", "]")
+		return replaceQuotationMarkInValue(deleteQuotationMarkOutOfObject(in));
+	}
+
+	/**
+	 * 删除对象、array 外部不应存在的引号
+	 * @param in
+	 * @return
+     */
+	private static String deleteQuotationMarkOutOfObject(String in) {
+		return in.replaceAll("\"\\[", "[").replaceAll("\\]\"", "]")
 				.replaceAll("\"\\{", "{").replaceAll("\\}\"", "}")
-				.replaceAll("\\\\\"", "\""));
+				.replaceAll("\\\\\"", "\"");
 	}
 	
 	/**
 	 * 替换value中的英文引号-->中文引号
-	 * @param s
+	 * @param in
 	 * @return
 	 */
-	private static String replaceQuotationMarkInValue(String s) {
-		char[] temp = s.toCharArray();
+	private static String replaceQuotationMarkInValue(String in) {
+		char[] temp = in.toCharArray();
 		int n = temp.length;
 		for (int i = 0; i < n; i++) {
 			if (temp[i] == ':' && temp[i + 1] == '"') {
