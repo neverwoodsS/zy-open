@@ -16,7 +16,7 @@ import java.io.Serializable;
  * 封装了 bundle 数据的存取以避免直接 getIntent 取值错误
  * 封装了 keyboard 的显示与隐藏方法
  */
-public class ZYActivity extends AppCompatActivity {
+public abstract class ZYActivity extends AppCompatActivity {
 
     private Bundle savedBundle;
 
