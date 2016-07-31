@@ -17,7 +17,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * 删除对象、array 外部不应存在的引号
+	 * 删除object、array 外部不应存在的引号
 	 * @param in
 	 * @return
      */
