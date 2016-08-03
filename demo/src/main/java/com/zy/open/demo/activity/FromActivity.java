@@ -3,7 +3,7 @@ package com.zy.open.demo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import com.zy.demo.lib.base.ZYActivity;
+import com.zy.open.lib.base.ZYActivity;
 import com.zy.open.demo.R;
 
 public class FromActivity extends ZYActivity {

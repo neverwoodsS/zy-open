@@ -1,4 +1,4 @@
-package com.zy.demo.lib.util;
+package com.zy.open.lib.util;
 
 /**
  *  Create by zhangll on 2016.07.31
