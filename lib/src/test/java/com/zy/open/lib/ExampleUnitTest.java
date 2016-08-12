@@ -1,4 +1,4 @@
-package com.zy.open.lib;
+package com.zy.demo.lib;
 
 import org.junit.Test;
 
