@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.zy.open.demo.R;
-import com.zy.open.lib.adapter.ZYAdapter;
+import com.zy.open.lib.adapter.list.ListAdapter;
 import com.zy.open.lib.base.ZYActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class MultiTypeListActivity extends ZYActivity {
 
     ListView listView;
-    ZYAdapter<Item> adapter;
+    ListAdapter<Item> adapter;
     List<Item> dataSource = new ArrayList<>();
 
     @Override
@@ -66,7 +66,7 @@ public class MultiTypeListActivity extends ZYActivity {
         }
     }
 
-    class MultiTypeAdapter extends ZYAdapter<Item> {
+    class MultiTypeAdapter extends ListAdapter<Item> {
         public MultiTypeAdapter(Context context, List<Item> data, Map<Integer, Integer> layouts) {
             super(context, data, layouts);
         }

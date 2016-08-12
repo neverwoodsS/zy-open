@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.zy.open.demo.R;
-import com.zy.open.lib.adapter.ZYAdapter;
+import com.zy.open.lib.adapter.list.ListAdapter;
 import com.zy.open.lib.base.ZYActivity;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 public class SingleTypeListActivity extends ZYActivity {
 
     ListView listView;
-    ZYAdapter<Item> adapter;
+    ListAdapter<Item> adapter;
     List<Item> dataSource = new ArrayList<>();
 
     @Override
@@ -34,7 +34,7 @@ public class SingleTypeListActivity extends ZYActivity {
     }
 
     private void initAdapter() {
-        adapter = new ZYAdapter<Item>(this, new ArrayList<Item>(), R.layout.item_single_type) {
+        adapter = new ListAdapter<Item>(this, new ArrayList<Item>(), R.layout.item_single_type) {
             @Override
             protected void setItem(View convertView, Item data, int position) {
                 TextView itemTv = getChildView(convertView, R.id.tv_item);
