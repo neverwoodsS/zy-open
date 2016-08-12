@@ -21,7 +21,7 @@ public class JsonUtil {
 	 * @param in
 	 * @return
      */
-	private static String deleteQuotationMarkOutOfObject(String in) {
+	public static String deleteQuotationMarkOutOfObject(String in) {
 		return in.replaceAll("\"\\[", "[").replaceAll("\\]\"", "]")
 				.replaceAll("\"\\{", "{").replaceAll("\\}\"", "}")
 				.replaceAll("\\\\\"", "\"");
@@ -32,7 +32,7 @@ public class JsonUtil {
 	 * @param in
 	 * @return
 	 */
-	private static String replaceQuotationMarkInValue(String in) {
+	public static String replaceQuotationMarkInValue(String in) {
 		char[] temp = in.toCharArray();
 		int n = temp.length;
 		for (int i = 0; i < n; i++) {
