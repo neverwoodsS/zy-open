@@ -1,14 +1,13 @@
 ##zy-open
 zy-open 是一个立志于帮助开发者提高开发效率的开源项目，会尽可能遵循以下理念及原则:
->1.可以作为简单项目的基础设施；
->2.对大部分Android开发者都有用；
->3.每一个功能、控件都有使用案例。
->4.demo 模块中可能会有一些
+>1.可以作为简单项目的基础设施；</br>
+>2.对大部分Android开发者都有用；</br>
+>3.每一个功能、控件都有使用案例。</br>
 
 ###如何依赖？
->1.compile 'com.zy.open:lib:versionName'
->2.目前最新 versionName 1.0.3
->3.没了，你懂的
+>1.compile 'com.zy.open:lib:versionName'</br>
+>2.目前最新 versionName 1.0.3</br>
+>3.没了，你懂的</br>
 >
 
 ###怎么联系我们？
