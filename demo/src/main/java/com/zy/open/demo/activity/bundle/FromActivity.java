@@ -11,7 +11,7 @@ public class FromActivity extends ZYActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_from);
         findViewById(R.id.btn_send_bundle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
