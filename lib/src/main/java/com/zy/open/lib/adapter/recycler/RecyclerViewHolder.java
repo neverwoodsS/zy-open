@@ -78,6 +78,16 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public RecyclerViewHolder setTag(int viewId, Object tag) {
+        getChildView(viewId).setTag(tag);
+        return this;
+    }
+
+    public RecyclerViewHolder setTag(int viewId, int tagId, Object tag) {
+        getChildView(viewId).setTag(tagId, tag);
+        return this;
+    }
+
     public RecyclerViewHolder setOnClickListener(int viewId, View.OnClickListener onClickListener) {
         getChildView(viewId).setOnClickListener(onClickListener);
         return this;
