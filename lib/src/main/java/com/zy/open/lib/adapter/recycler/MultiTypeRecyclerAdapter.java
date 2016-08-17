@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +45,13 @@ public abstract class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<R
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (delegates.size() == 0) {
-            return new RecyclerViewHolder(mInflater.inflate(getLayoutId(), parent, false));
+            return new RecyclerViewHolder(mInflater.inflate(getLayoutId(),
+                    parent,
+                    false));
         } else {
-            return new RecyclerViewHolder(mInflater.inflate(delegates.get(viewType).getLayoutId(), parent, false));
+            return new RecyclerViewHolder(mInflater.inflate(delegates.get(viewType).getLayoutId(),
+                    parent,
+                    false));
         }
     }
 
@@ -60,14 +63,6 @@ public abstract class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<R
             AdapterDelegate<T> delegate = delegates.get(getItemViewType(position));
             delegate.bind(holder, mData.get(position), position);
         }
-    }
-
-    protected void bind(RecyclerViewHolder holder, T data, int position) {
-
-    }
-
-    protected int getLayoutId() {
-        return 0;
     }
 
     @Override
@@ -86,6 +81,29 @@ public abstract class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<R
      * @return
      */
     protected int getItemViewType(T data) {
+        return 0;
+    }
+
+
+    //以下方法为添加对单类型的支持
+
+    /**
+     * 单类型时子类需实现的方法
+     * 处理绑定 view
+     * @param holder
+     * @param data
+     * @param position
+     */
+    protected void bind(RecyclerViewHolder holder, T data, int position) {
+
+    }
+
+    /**
+     * 单类型时子类需实现的方法
+     * 提供布局资源 id
+     * @return
+     */
+    protected int getLayoutId() {
         return 0;
     }
 }
