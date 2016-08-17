@@ -82,7 +82,7 @@ public class SingleAdapterActivity extends ZYActivity {
             }
 
             /**
-             * 实现多类型必须重写
+             * 实现多类型必须重写此方法
              */
             @Override
             protected int getItemViewType(int position, MultiTypeItem data) {
