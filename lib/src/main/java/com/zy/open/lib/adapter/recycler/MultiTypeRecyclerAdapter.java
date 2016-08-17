@@ -1,6 +1,7 @@
 package com.zy.open.lib.adapter.recycler;
 
 import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -11,17 +12,39 @@ import java.util.List;
 /**
  * Created by zhangll on 16/8/12.
  */
-public abstract class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
+public class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     protected Context mContext;
     protected List<T> mData;
     protected LayoutInflater mInflater;
     protected SparseArray<AdapterDelegate<T>> delegates = new SparseArray<>();
 
+    protected int layoutRes;
+
     public MultiTypeRecyclerAdapter(Context context) {
         this.mData = new ArrayList<>();
         this.mContext = context;
         this.mInflater = LayoutInflater.from(mContext);
+    }
+
+    public MultiTypeRecyclerAdapter(Context context, List<T> data) {
+        this.mData = data;
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(mContext);
+    }
+
+    public MultiTypeRecyclerAdapter(Context context, List<T> data, int layoutRes) {
+        this.mData = data;
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(mContext);
+        this.layoutRes = layoutRes;
+    }
+
+    public MultiTypeRecyclerAdapter(Context context, List<T> data, AdapterDelegate<T> delegate) {
+        this.mData = data;
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(mContext);
+        delegates.put(0, delegate);
     }
 
     public MultiTypeRecyclerAdapter<T> addDelegate(int type, AdapterDelegate<T> delegate) {
@@ -45,7 +68,7 @@ public abstract class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<R
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (delegates.size() == 0) {
-            return new RecyclerViewHolder(mInflater.inflate(getLayoutId(),
+            return new RecyclerViewHolder(mInflater.inflate(layoutRes,
                     parent,
                     false));
         } else {
@@ -84,9 +107,6 @@ public abstract class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<R
         return 0;
     }
 
-
-    //以下方法为添加对单类型的支持
-
     /**
      * 单类型时子类需实现的方法
      * 处理绑定 view
@@ -96,14 +116,5 @@ public abstract class MultiTypeRecyclerAdapter<T> extends RecyclerView.Adapter<R
      */
     protected void bind(RecyclerViewHolder holder, T data, int position) {
 
-    }
-
-    /**
-     * 单类型时子类需实现的方法
-     * 提供布局资源 id
-     * @return
-     */
-    protected int getLayoutId() {
-        return 0;
     }
 }
