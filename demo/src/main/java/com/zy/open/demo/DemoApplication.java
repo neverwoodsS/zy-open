@@ -1,4 +1,4 @@
-package com.zy.open.demo.activity;
+package com.zy.open.demo;
 
 import android.app.Application;
 

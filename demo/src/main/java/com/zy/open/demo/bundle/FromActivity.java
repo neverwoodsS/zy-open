@@ -1,4 +1,4 @@
-package com.zy.open.demo.activity.bundle;
+package com.zy.open.demo.bundle;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -3,19 +3,19 @@
     package="com.zy.open.demo">
 
     <application
-        android:name=".activity.DemoApplication"
+        android:name=".DemoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.bundle.FromActivity">
+        <activity android:name=".bundle.FromActivity">
         </activity>
-        <activity android:name=".activity.bundle.ToActivity" />
-        <activity android:name=".activity.list.SingleTypeListActivity"></activity>
-        <activity android:name=".activity.list.MultiTypeListActivity">
+        <activity android:name=".bundle.ToActivity" />
+        <activity android:name=".list.SingleTypeListActivity"></activity>
+        <activity android:name=".list.MultiTypeListActivity">
         </activity>
-        <activity android:name=".activity.recycler.RecyclerActivity">
+        <activity android:name=".recycler.RecyclerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

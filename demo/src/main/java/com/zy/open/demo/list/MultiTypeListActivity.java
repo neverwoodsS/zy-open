@@ -1,4 +1,4 @@
-package com.zy.open.demo.activity.list;
+package com.zy.open.demo.list;
 
 import android.content.Context;
 import android.os.Bundle;

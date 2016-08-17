@@ -1,13 +1,11 @@
-package com.zy.open.demo.activity.recycler;
+package com.zy.open.demo.recycler;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 
 import com.zy.open.demo.R;
 import com.zy.open.lib.adapter.recycler.MultiTypeRecyclerAdapter;
-import com.zy.open.lib.adapter.recycler.RecyclerViewHolder;
 import com.zy.open.lib.base.ZYActivity;
 import java.util.ArrayList;
 import java.util.List;

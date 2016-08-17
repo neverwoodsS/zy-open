@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.bundle.FromActivity">
+    tools:context=".bundle.FromActivity">
 
     <Button
         android:id="@+id/btn_send_bundle"

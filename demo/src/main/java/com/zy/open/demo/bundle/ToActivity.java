@@ -1,10 +1,8 @@
-package com.zy.open.demo.activity.bundle;
+package com.zy.open.demo.bundle;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
-import android.view.View;
 
 import com.zy.open.lib.base.ZYActivity;
 import com.zy.open.demo.R;
