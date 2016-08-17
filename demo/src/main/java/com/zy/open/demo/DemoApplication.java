@@ -5,7 +5,7 @@ import android.app.Application;
 import com.networkbench.agent.impl.NBSAppAgent;
 
 /**
- * Created by  chuangtou on 16/8/2.
+ * Created by  yanghai on 16/8/2.
  * 国丞创投
  */
 public class DemoApplication extends Application{
