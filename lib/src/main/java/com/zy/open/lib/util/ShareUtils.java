@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by  chuangtou on 16/8/3.
- * 国丞创投
+ * User: YangHai (1454025171@qq.com)
+ * Date: 2016-08-18
+ * Time: 10:33
  */
 public class ShareUtils {
 
