@@ -16,6 +16,8 @@ Email : 413700858@qq.com or GitHub163@126.com
 
 ###目前有些什么？
 #####1.ZYActivity
+博客：http://blog.csdn.net/neverwoods/article/details/52219642
+
 基类Activity，可以自动保存传递过来的 bundle 对象，也就是 getIntent() 方法拿到的数据。然后呢？然后你再也不用担心因为内存被回收导致的空指针了，也不用每个 Activity 都去写保存 bundle 的代码了。除此以外还内置了显示和隐藏键盘的方法，至少我们是经常用到，各位客官呢？
 #####2.ListAdapter、RecyclerAdapter
 你是否已经厌烦写 ListView、GridView 的适配器要写一大堆内容？还是早已对写 ViewHolder 类深恶痛绝？没关系，我们这里有一剂良药。继承我们的 Adapter，你大部分情况下只需要重写一个方法去渲染 item 的布局，其他的事情通通不用关心，甚至连 ViewHolder 都不用写，是不是很开心？
