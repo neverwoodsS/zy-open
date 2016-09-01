@@ -7,7 +7,7 @@ import android.view.View;
 import com.zy.open.demo.R;
 import com.zy.open.demo.recycler.bean.MultiTypeItem;
 import com.zy.open.demo.recycler.bean.SingleTypeItem;
-import com.zy.open.lib.adapter.recycler.RecyclerAdapter;
+import com.zy.open.lib.adapter.deprecated.RecyclerAdapter;
 import com.zy.open.lib.adapter.recycler.RecyclerViewHolder;
 import com.zy.open.lib.base.ZYActivity;
 import java.util.ArrayList;

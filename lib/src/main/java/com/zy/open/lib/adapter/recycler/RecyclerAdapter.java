@@ -2,37 +2,57 @@ package com.zy.open.lib.adapter.recycler;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by zhangll on 16/8/12.
  */
-public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
+public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     protected Context mContext;
     protected List<T> mData;
     protected LayoutInflater mInflater;
-    protected Map<Integer, Integer> mLayouts = new HashMap<>();
+    protected SparseArray<AdapterDelegate<T>> delegates = new SparseArray<>();
+
+    protected int layoutRes;
+
+    public RecyclerAdapter(Context context) {
+        this.mData = new ArrayList<>();
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(mContext);
+    }
+
+    public RecyclerAdapter(Context context, List<T> data) {
+        this.mData = data;
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(mContext);
+    }
 
     public RecyclerAdapter(Context context, List<T> data, int layoutRes) {
         this.mData = data;
         this.mContext = context;
-        this.mLayouts.put(0, layoutRes);
-
         this.mInflater = LayoutInflater.from(mContext);
+        this.layoutRes = layoutRes;
     }
 
-    public RecyclerAdapter(Context context, List<T> data, Map<Integer, Integer> layouts) {
+    public RecyclerAdapter(Context context, List<T> data, AdapterDelegate<T> delegate) {
         this.mData = data;
         this.mContext = context;
-        this.mLayouts.putAll(layouts);
-
         this.mInflater = LayoutInflater.from(mContext);
+        delegates.put(0, delegate);
+    }
+
+    public RecyclerAdapter<T> addDelegate(int type, AdapterDelegate<T> delegate) {
+        delegates.put(type, delegate);
+        return this;
+    }
+
+    public RecyclerAdapter<T> addDelegate(AdapterDelegate<T> delegate) {
+        return addDelegate(0, delegate);
     }
 
     public void refresh(List<T> data) {
@@ -46,15 +66,26 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RecyclerViewHolder(mInflater.inflate(mLayouts.get(viewType), parent, false));
+        if (delegates.size() == 0) {
+            return new RecyclerViewHolder(mInflater.inflate(layoutRes,
+                    parent,
+                    false));
+        } else {
+            return new RecyclerViewHolder(mInflater.inflate(delegates.get(viewType).getLayoutId(),
+                    parent,
+                    false));
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        onBindData(holder, mData.get(position), position);
+        if (delegates.size() == 0) {
+            bind(holder, mData.get(position), position);
+        } else {
+            AdapterDelegate<T> delegate = delegates.get(getItemViewType(position));
+            delegate.bind(holder, mData.get(position), position);
+        }
     }
-
-    protected abstract void onBindData(RecyclerViewHolder holder, T data, int position);
 
     @Override
     public int getItemCount() {
@@ -63,16 +94,26 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public int getItemViewType(int position) {
-        return getItemViewType(position, mData.get(position));
+        return getItemViewType(mData.get(position));
     }
 
     /**
-     * 由子类处理，默认返回 super.getItemViewType(position)
-     * @param position
+     * 由子类处理，默认返回 0
      * @param data
      * @return
      */
-    protected int getItemViewType(int position, T data) {
-        return super.getItemViewType(position);
+    protected int getItemViewType(T data) {
+        return 0;
+    }
+
+    /**
+     * 单类型时子类需实现的方法
+     * 处理绑定 view
+     * @param holder
+     * @param data
+     * @param position
+     */
+    protected void bind(RecyclerViewHolder holder, T data, int position) {
+
     }
 }

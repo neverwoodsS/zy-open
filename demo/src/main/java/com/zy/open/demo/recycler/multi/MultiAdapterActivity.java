@@ -7,7 +7,7 @@ import android.view.View;
 import com.zy.open.demo.R;
 import com.zy.open.demo.recycler.bean.MultiTypeItem;
 import com.zy.open.demo.recycler.bean.SingleTypeItem;
-import com.zy.open.lib.adapter.recycler.MultiTypeRecyclerAdapter;
+import com.zy.open.lib.adapter.recycler.RecyclerAdapter;
 import com.zy.open.lib.adapter.recycler.RecyclerViewHolder;
 import com.zy.open.lib.base.ZYActivity;
 import java.util.ArrayList;
@@ -41,8 +41,8 @@ public class MultiAdapterActivity extends ZYActivity {
         dataSource.add(new SingleTypeItem("test6"));
 
         //创建 adapter，并实现绑定视图的方法
-        MultiTypeRecyclerAdapter<SingleTypeItem> adapter;
-        adapter = new MultiTypeRecyclerAdapter<SingleTypeItem>(this, dataSource, R.layout.item_multi_type_two) {
+        RecyclerAdapter<SingleTypeItem> adapter;
+        adapter = new RecyclerAdapter<SingleTypeItem>(this, dataSource, R.layout.item_multi_type_two) {
             @Override
             protected void bind(RecyclerViewHolder holder, SingleTypeItem data, int position) {
                 holder.setText(R.id.tv_item, data.content);
@@ -50,11 +50,11 @@ public class MultiAdapterActivity extends ZYActivity {
         };
 
         //或者这样子写，提供一个唯一的 delegate
-        adapter = new MultiTypeRecyclerAdapter<>(this, dataSource);
+        adapter = new RecyclerAdapter<>(this, dataSource);
         adapter.addDelegate(new SingleDelegate());
 
         //再或者这样子写，直接从构造器传入一个 delegate
-        adapter = new MultiTypeRecyclerAdapter<>(this, dataSource, new SingleDelegate());
+        adapter = new RecyclerAdapter<>(this, dataSource, new SingleDelegate());
 
         recyclerView.setAdapter(adapter);
     }
@@ -70,8 +70,8 @@ public class MultiAdapterActivity extends ZYActivity {
         dataSource.add(new MultiTypeItem(MultiTypeItem.TYPE_ONE, "test6"));
 
         //创建 adapter，实现类型区分的方法，并添加 delegate
-        MultiTypeRecyclerAdapter<MultiTypeItem> adapter;
-        adapter = new MultiTypeRecyclerAdapter<MultiTypeItem>(this, dataSource) {
+        RecyclerAdapter<MultiTypeItem> adapter;
+        adapter = new RecyclerAdapter<MultiTypeItem>(this, dataSource) {
             @Override
             protected int getItemViewType(MultiTypeItem data) {
                 return data.type;
