@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder>
     protected List<T> mData;
     protected LayoutInflater mInflater;
     protected SparseArray<AdapterDelegate<T>> delegates = new SparseArray<>();
+
+    protected SparseArray<OnItemClickListener<T>> listeners = new SparseArray<>();
 
     protected int layoutRes;
 
@@ -64,6 +67,14 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder>
         }
     }
 
+    public void setOnItemClickListener(int viewId, OnItemClickListener<T> onItemClickListener) {
+        listeners.put(viewId, onItemClickListener);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
+        setOnItemClickListener(0, onItemClickListener);
+    }
+
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (delegates.size() == 0) {
@@ -79,12 +90,14 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder>
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        T data = mData.get(position);
         if (delegates.size() == 0) {
             bind(holder, mData.get(position), position);
         } else {
             AdapterDelegate<T> delegate = delegates.get(getItemViewType(position));
-            delegate.bind(holder, mData.get(position), position);
+            delegate.bind(holder, data, position);
         }
+        setListeners(holder, data, position);
     }
 
     @Override
@@ -115,5 +128,18 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder>
      */
     protected void bind(RecyclerViewHolder holder, T data, int position) {
 
+    }
+
+    private void setListeners(RecyclerViewHolder holder, T data, int position) {
+        int count = listeners.size();
+        for (int i = count - 1; i >= 0; i--) {
+            int viewId = listeners.keyAt(i);
+            OnItemClickListener onItemClickListener = listeners.valueAt(i);
+            holder.setOnItemClickListener(viewId, data, position, onItemClickListener);
+        }
+    }
+
+    public interface OnItemClickListener<T> {
+        void onItemClicked(View view, T data, int position);
     }
 }

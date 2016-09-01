@@ -3,6 +3,7 @@ package com.zy.open.demo.recycler.multi;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import com.zy.open.demo.R;
 import com.zy.open.demo.recycler.bean.MultiTypeItem;
@@ -55,6 +56,21 @@ public class MultiAdapterActivity extends ZYActivity {
 
         //再或者这样子写，直接从构造器传入一个 delegate
         adapter = new RecyclerAdapter<>(this, dataSource, new SingleDelegate());
+
+        //设置点击监听
+        adapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener<SingleTypeItem>() {
+            @Override
+            public void onItemClicked(View view, SingleTypeItem data, int position) {
+                Log.i("ItemClickListener", "click at " + position + " : " + data);
+            }
+        });
+
+        adapter.setOnItemClickListener(R.id.tv_item, new RecyclerAdapter.OnItemClickListener<SingleTypeItem>() {
+            @Override
+            public void onItemClicked(View view, SingleTypeItem data, int position) {
+                Log.i("ItemClickListener", "click tv_item at " + position + " : " + data);
+            }
+        });
 
         recyclerView.setAdapter(adapter);
     }

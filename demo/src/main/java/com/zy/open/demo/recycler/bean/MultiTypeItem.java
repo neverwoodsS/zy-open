@@ -14,4 +14,12 @@ public class MultiTypeItem {
         this.type = type;
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "MultiTypeItem{" +
+                "type=" + type +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

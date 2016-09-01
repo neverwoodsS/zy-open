@@ -9,4 +9,11 @@ public class SingleTypeItem {
     public SingleTypeItem(String content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "SingleTypeItem{" +
+                "content='" + content + '\'' +
+                '}';
+    }
 }
