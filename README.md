@@ -6,7 +6,7 @@ zy-open 是一个立志于帮助开发者提高开发效率的开源项目，会
 
 ###如何依赖？
 >1.compile 'com.zy.open:lib:versionName'</br>
->2.目前最新 versionName 1.0.3</br>
+>2.目前最新 versionName 1.1</br>
 >3.没了，你懂的</br>
 >
 
