@@ -26,12 +26,14 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
                                            final int position,
                                            final RecyclerAdapter.OnItemClickListener<T> onItemClickListener) {
         final View view = viewId == 0 ? itemView : getChildView(viewId);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onItemClicked(view, data, position);
-            }
-        });
+        if (view != null) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClicked(view, data, position);
+                }
+            });
+        }
     }
 
     public RecyclerViewHolder setText(int viewId, CharSequence charSequence) {
