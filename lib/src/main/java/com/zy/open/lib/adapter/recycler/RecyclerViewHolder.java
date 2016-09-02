@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,12 +14,20 @@ import android.widget.TextView;
  */
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
+    public SparseArray<View> viewCache;
+
     public RecyclerViewHolder(View itemView) {
         super(itemView);
+        viewCache = new SparseArray<>();
     }
 
     public <T extends View> T getChildView(int id) {
-        return (T) itemView.findViewById(id);
+        View child = viewCache.get(id);
+        if (child == null) {
+            child = itemView.findViewById(id);
+            viewCache.put(id, child);
+        }
+        return (T) child;
     }
 
     public <T> void setOnItemClickListener(int viewId,
