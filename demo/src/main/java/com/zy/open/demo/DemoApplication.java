@@ -1,9 +1,15 @@
 package com.zy.open.demo;
 
 import android.app.Application;
+import android.graphics.Color;
 
 import com.networkbench.agent.impl.NBSAppAgent;
+<<<<<<<HEAD
 import com.zy.open.lib.exception.ExceptionHandler;
+=======
+import com.zy.open.lib.util.DisplayUtil;
+import com.zy.open.lib.view.title.TitleView;
+>>>>>>>e7949d3d6bb76f3893bc4ee76e096dbc59e66bfd
 
 /**
  * User: YangHai (1454025171@qq.com)
@@ -23,5 +29,11 @@ public class DemoApplication extends Application {
         catchHandler.init(getApplicationContext());
         catchHandler.collectDeviceInfo(getApplicationContext());
         catchHandler.getSDPath();
+        //初始化单位转换工具
+        DisplayUtil.init(this);
+
+        //设置标题栏默认参数
+        TitleView.setDefaultBackgroundColor(Color.BLACK);
+        TitleView.setDefaultLeftImage(R.mipmap.ic_launcher);
     }
 }
