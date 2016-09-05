@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.zy.open.lib.util.DisplayUtil;
-import com.zy.open.lib.view.title.TitleStyle;
 import com.zy.open.lib.view.title.TitleView;
 
 /**
