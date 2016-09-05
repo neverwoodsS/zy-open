@@ -1,8 +1,10 @@
 package com.zy.open.demo;
 
 import android.app.Application;
-
+import android.graphics.Color;
 import com.networkbench.agent.impl.NBSAppAgent;
+import com.zy.open.lib.util.DisplayUtil;
+import com.zy.open.lib.view.title.TitleView;
 
 /**
  * User: YangHai (1454025171@qq.com)
@@ -16,5 +18,12 @@ public class DemoApplication extends Application {
         super.onCreate();
         NBSAppAgent.setLicenseKey("58a88474216a4a4da53d3df7f7e1662c").withLocationServiceEnabled(true).setX5Enable(true)
                 .start(this.getApplicationContext());
+
+        //初始化单位转换工具
+        DisplayUtil.init(this);
+
+        //设置标题栏默认参数
+        TitleView.setDefaultBackgroundColor(Color.BLACK);
+        TitleView.setDefaultLeftImage(R.mipmap.ic_launcher);
     }
 }
