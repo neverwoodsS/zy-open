@@ -4,12 +4,9 @@ import android.app.Application;
 import android.graphics.Color;
 
 import com.networkbench.agent.impl.NBSAppAgent;
-<<<<<<<HEAD
 import com.zy.open.lib.exception.ExceptionHandler;
-=======
 import com.zy.open.lib.util.DisplayUtil;
 import com.zy.open.lib.view.title.TitleView;
->>>>>>>e7949d3d6bb76f3893bc4ee76e096dbc59e66bfd
 
 /**
  * User: YangHai (1454025171@qq.com)
