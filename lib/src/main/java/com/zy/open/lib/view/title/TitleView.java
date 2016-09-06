@@ -11,7 +11,7 @@ import com.zy.open.lib.util.DisplayUtil;
 /**
  * Created by zhangll on 16/4/11.
  */
-public class TitleView extends RelativeLayout implements TitleViewInterface {
+public class TitleView extends RelativeLayout implements ITitleView {
 
     private static int backGroundColor = Color.RED;
     private static int backArrowRes;

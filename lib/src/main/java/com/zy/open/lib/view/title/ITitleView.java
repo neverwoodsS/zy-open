@@ -5,7 +5,7 @@ import android.view.View;
 /**
  * Created by zhangll on 16/4/11.
  */
-public interface TitleViewInterface {
+public interface ITitleView {
     void setTitleStyle(TitleStyle titleStyle);
 
     void setLeftText(CharSequence leftText);
