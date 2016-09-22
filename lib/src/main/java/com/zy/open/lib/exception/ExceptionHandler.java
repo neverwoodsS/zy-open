@@ -43,7 +43,6 @@ import java.util.Map;
  */
 public class ExceptionHandler implements UncaughtExceptionHandler {
     public static final String TAG = "CrashHandler";
-
     // 系统默认的UncaughtException处理类
     private UncaughtExceptionHandler mDefaultHandler;
     // CrashHandler实例
@@ -53,17 +52,13 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
     // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<String, String>();
 
-    // 用于格式化日期,作为日志文件名的一部分
+    private String fileDir = "";
 
-    /**
-     * 保证只有一个CrashHandler实例
-     */
+
     private ExceptionHandler() {
+
     }
 
-    /**
-     * 获取CrashHandler实例 ,单例模式
-     */
     public static ExceptionHandler getInstance() {
         if (instance == null)
             instance = new ExceptionHandler();
@@ -75,11 +70,13 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
      */
     public void init(Context context) {
         mContext = context;
+        fileDir = getSDPath();
         // 获取系统默认的UncaughtException处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         // 设置该CrashHandler为程序的默认处理器
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
+
 
     /**
      * 当UncaughtException发生时会转入该函数来处理
@@ -141,11 +138,9 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(),
                     PackageManager.GET_ACTIVITIES);
             if (pi != null) {
-                String versionName = pi.versionName == null ? "null"
-                        : pi.versionName;
-                String versionCode = pi.versionCode + "";
+                String versionName = ;
                 infos.put("versionName", versionName);
-                infos.put("versionCode", versionCode);
+                infos.put("versionCode", String.valueOf(pi.versionCode));
             }
         } catch (NameNotFoundException e) {
             Log.e(TAG, "an error occured when collect package info", e);
@@ -192,7 +187,7 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
             String fileName = "crash-" + new Date().getTime() + ".txt";
             if (Environment.getExternalStorageState().equals(
                     Environment.MEDIA_MOUNTED)) {
-                String path = getSDPath() + "/exception/";
+                String path = fileDir + "/exception/";
 
                 File dir = new File(path);
                 if (!dir.exists()) {
@@ -229,7 +224,7 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
 
     /**
      * 将捕获的导致崩溃的错误信息发送给开发人员
-     * <p/>
+     * <p>
      * 目前只将log日志保存在sdcard 和输出到LogCat中，并未发送给后台。
      */
     private void sendCrashLog2PM(String fileName) {
@@ -264,6 +259,16 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
         }
     }
 
+    /**
+     * 如果需要自定义文件存放目录,调用该方法
+     * 默认情况为sd根目录
+     *
+     * @param fileDir
+     */
+    public void setFileDir(String fileDir) {
+        this.fileDir = fileDir;
+    }
+
     // 获得sd卡的根目录
     public String getSDPath() {
         File sdDir = null;
@@ -274,6 +279,5 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
             sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
         }
         return sdDir.toString();
-
     }
 }

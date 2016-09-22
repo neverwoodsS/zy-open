@@ -8,6 +8,9 @@ import com.zy.open.lib.exception.ExceptionHandler;
 import com.zy.open.lib.util.DisplayUtil;
 import com.zy.open.lib.view.title.TitleView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * User: YangHai (1454025171@qq.com)
  * Date: 2016-08-18
@@ -26,8 +29,11 @@ public class DemoApplication extends Application {
         catchHandler.init(getApplicationContext());
         catchHandler.collectDeviceInfo(getApplicationContext());
         catchHandler.getSDPath();
+
         //初始化单位转换工具
         DisplayUtil.init(this);
+
+
 
         //设置标题栏默认参数
         TitleView.setDefaultBackgroundColor(Color.BLACK);
