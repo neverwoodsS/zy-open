@@ -138,8 +138,8 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(),
                     PackageManager.GET_ACTIVITIES);
             if (pi != null) {
-                String versionName = ;
-                infos.put("versionName", versionName);
+                infos.put("versionName",  String.valueOf(pi.versionName == null ? "null"
+                        : pi.versionName));
                 infos.put("versionCode", String.valueOf(pi.versionCode));
             }
         } catch (NameNotFoundException e) {
