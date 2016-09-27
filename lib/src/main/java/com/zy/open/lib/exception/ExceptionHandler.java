@@ -52,7 +52,7 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
     // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<String, String>();
 
-    private String fileDir = "";
+    private String fileDir = getSDPath();
 
 
     private ExceptionHandler() {
@@ -68,13 +68,32 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
     /**
      * 初始化
      */
-    public void init(Context context) {
+    public ExceptionHandler init(Context context) {
         mContext = context;
-        fileDir = getSDPath();
         // 获取系统默认的UncaughtException处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         // 设置该CrashHandler为程序的默认处理器
         Thread.setDefaultUncaughtExceptionHandler(this);
+
+        return this;
+    }
+
+    /**
+     * 如果需要自定义文件存放目录,调用该方法
+     * 默认情况为sd根目录
+     *
+     * @param fileDir
+     */
+    public ExceptionHandler setAbsolutelyPath(String fileDir) {
+        this.fileDir = fileDir;
+
+        return this;
+    }
+
+    public ExceptionHandler setRelativePath(String path) {
+        this.fileDir += path;
+
+        return this;
     }
 
 
@@ -184,10 +203,10 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
         String result = writer.toString();
         sb.append(result);
         try {
-            String fileName = "crash-" + new Date().getTime() + ".txt";
+            String fileName = "/crash-" + new Date().getTime() + ".txt";
             if (Environment.getExternalStorageState().equals(
                     Environment.MEDIA_MOUNTED)) {
-                String path = fileDir + "/exception/";
+                String path = fileDir;
 
                 File dir = new File(path);
                 if (!dir.exists()) {
@@ -257,16 +276,6 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
                 e.printStackTrace();
             }
         }
-    }
-
-    /**
-     * 如果需要自定义文件存放目录,调用该方法
-     * 默认情况为sd根目录
-     *
-     * @param fileDir
-     */
-    public void setFileDir(String fileDir) {
-        this.fileDir = fileDir;
     }
 
     // 获得sd卡的根目录

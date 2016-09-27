@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zy.open.demo">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".DemoApplication"
         android:allowBackup="true"
@@ -18,6 +20,8 @@
         <activity android:name=".recycler.single.SingleAdapterActivity" />
         <activity android:name=".recycler.multi.MultiAdapterActivity" />
         <activity android:name=".title.TestTitleActivity">
+        </activity>
+        <activity android:name=".exception.ExceptionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
